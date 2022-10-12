@@ -1,6 +1,6 @@
 # util-before-after-fix
 
-A project generated from [aunty](https://github.com/abcnews/aunty)'s `basic` project template.
+Some JavaScript code to attach to before and after interactives to enable some fixes while PL code is being updated.
 
 ## Authors
 
