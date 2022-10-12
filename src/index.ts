@@ -16,8 +16,6 @@ function renderApp() {
 whenDOMReady.then(() => {
   [appMountEl] = selectMounts('utilbeforeafterfix');
 
-  console.log(':)');
-
   if (appMountEl) {
     appProps = acto(getMountValue(appMountEl)) as AppProps;
     renderApp();
