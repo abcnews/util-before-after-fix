@@ -13,7 +13,6 @@ let appProps: AppProps;
 
 function fixBeforeAndAfters() {
   const figures = document.querySelectorAll('[data-component="BeforeAfterImage"]');
-  console.log(figures);
 
   figures.forEach(figure => {
     const containers = figure.querySelectorAll('[data-component="AspectRatioContainer"]');
@@ -23,7 +22,6 @@ function fixBeforeAndAfters() {
       if (childImage === null) return;
       if (childImage.height === 0) return;
       const properRatio = childImage.width / childImage.height;
-      console.log(properRatio);
       container.setAttribute('style', `--aspect-ratio:${properRatio}`);
     });
   });
