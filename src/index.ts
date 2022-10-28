@@ -11,10 +11,18 @@ import './styles.scss';
 let appMountEl: Mount;
 let appProps: AppProps;
 
+/**
+ * The PL Before and After constrains the images to 16:9 aspect
+ * ratio currently. This function searches for before and after components
+ * and the calculates the correct aspect ratio and applies it.
+ */
 function fixBeforeAndAfters() {
   const figures = document.querySelectorAll('[data-component="BeforeAfterImage"]');
 
   figures.forEach(figure => {
+    // Figure needs extra height due to figure caption
+    (figure as HTMLElement).style.maxHeight = 'unset';
+
     const containers = figure.querySelectorAll('[data-component="AspectRatioContainer"]');
 
     containers.forEach(container => {
