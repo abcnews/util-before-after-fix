@@ -4,10 +4,30 @@ import { getMountValue, selectMounts } from '@abcnews/mount-utils';
 import type { Mount } from '@abcnews/mount-utils';
 import App from './components/App';
 import type { AppProps } from './components/App';
+
+// Apply some global custom styles
 import './styles.scss';
 
 let appMountEl: Mount;
 let appProps: AppProps;
+
+function fixBeforeAndAfters() {
+  const figures = document.querySelectorAll('[data-component="BeforeAfterImage"]');
+  console.log(figures);
+
+  figures.forEach(figure => {
+    const containers = figure.querySelectorAll('[data-component="AspectRatioContainer"]');
+
+    containers.forEach(container => {
+      const childImage = container.querySelector('img');
+      if (childImage === null) return;
+      if (childImage.height === 0) return;
+      const properRatio = childImage.width / childImage.height;
+      console.log(properRatio);
+      container.setAttribute('style', `--aspect-ratio:${properRatio}`);
+    });
+  });
+}
 
 function renderApp() {
   render(new App(appProps).el, appMountEl);
@@ -15,6 +35,8 @@ function renderApp() {
 
 whenDOMReady.then(() => {
   [appMountEl] = selectMounts('utilbeforeafterfix');
+
+  fixBeforeAndAfters();
 
   if (appMountEl) {
     appProps = acto(getMountValue(appMountEl)) as AppProps;
